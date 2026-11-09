@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Relancio — Faites payer vos factures, sans courir après vos clients</title>
+<meta name="description" content="Relancio relance automatiquement vos clients par e-mail, SMS et WhatsApp jusqu’au paiement. Pour PME, agences et indépendants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563EB;--on-primary:#fff;--accent:#EA580C;--on-accent:#1a0e05;
+  --bg:#F8FAFC;--fg:#1E293B;--card:#fff;--muted:#E9EFF8;--muted-fg:#475569;--border:#E2E8F0;--ok:#15803D;
+  --glass:rgba(255,255,255,.72);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --primary:#60A5FA;--on-primary:#0b1220;--bg:#0B1220;--fg:#E5ECF6;--card:#121B2E;--muted:#18233A;--muted-fg:#A3B1C6;--border:#24324D;--ok:#4ADE80;--glass:rgba(18,27,46,.72);color-scheme:dark}}
+:root[data-theme="dark"]{--primary:#60A5FA;--on-primary:#0b1220;--bg:#0B1220;--fg:#E5ECF6;--card:#121B2E;--muted:#18233A;--muted-fg:#A3B1C6;--border:#24324D;--ok:#4ADE80;--glass:rgba(18,27,46,.72);color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{line-height:1.15;margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+.muted{color:var(--muted-fg)}
+:focus-visible{outline:3px solid var(--primary);outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;font:700 1rem "Plus Jakarta Sans",sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn-cta{background:var(--accent);color:var(--on-accent);box-shadow:0 6px 20px -8px var(--accent)}
+.btn-cta:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--fg);border-color:var(--border)}
+.btn-ghost:hover{background:var(--muted)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.links{display:flex;gap:26px;align-items:center}
+.links a{text-decoration:none;font-weight:600;font-size:.95rem;color:var(--muted-fg)}
+.links a:hover{color:var(--fg)}
+@media(max-width:760px){.links a:not(.btn){display:none}}
+.hero{padding:64px 0 48px;background:radial-gradient(900px 400px at 85% -10%,color-mix(in srgb,var(--primary) 18%,transparent),transparent),radial-gradient(600px 300px at 0% 10%,color-mix(in srgb,var(--accent) 12%,transparent),transparent)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:.85rem;font-weight:600;color:var(--muted-fg);margin-bottom:20px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.hero p.lead{font-size:1.15rem;margin:20px 0 28px;max-width:540px;color:var(--muted-fg)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.note{font-size:.875rem;margin-top:14px;color:var(--muted-fg)}
+.mock{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:20px;padding:20px;box-shadow:0 30px 60px -30px rgba(37,99,235,.45)}
+.mock-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:12px;background:var(--card);border:1px solid var(--border);margin-top:10px;font-size:.92rem}
+.row small{display:block;color:var(--muted-fg);font-size:.8rem}
+.tag{font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.t-ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.t-late{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.t-wait{background:var(--muted);color:var(--muted-fg)}
+.kpi{display:flex;gap:12px;margin-top:14px}
+.kpi div{flex:1;background:var(--muted);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:1.35rem}
+.kpi span{font-size:.78rem;color:var(--muted-fg)}
+section{padding:72px 0}
+.head{max-width:640px;margin-bottom:40px}
+.head p{margin-top:12px;color:var(--muted-fg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:700px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.stat b{font-size:2.2rem;font-weight:800;color:var(--primary);display:block;line-height:1.1}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+@media(max-width:800px){.steps{grid-template-columns:1fr}}
+.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;counter-increment:s}
+.step::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--primary);color:var(--on-primary);font-weight:800;margin-bottom:14px}
+.step p,.feat p{margin-top:8px;color:var(--muted-fg);font-size:.95rem}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:700px){.feats{grid-template-columns:1fr}}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.ico{width:44px;height:44px;border-radius:12px;background:var(--muted);display:grid;place-items:center;margin-bottom:14px;color:var(--primary)}
+.ico svg{width:22px;height:22px}
+.alt{background:var(--muted)}
+.alt .step,.alt .feat,.alt .price{background:var(--card)}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+@media(max-width:860px){.prices{grid-template-columns:1fr}}
+.price{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.price.pop{border:2px solid var(--primary);position:relative}
+.price.pop::after{content:"Le plus choisi";position:absolute;top:-14px;left:24px;background:var(--primary);color:var(--on-primary);font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:99px}
+.amt{font-size:2.6rem;font-weight:800;line-height:1}
+.amt small{font-size:1rem;font-weight:600;color:var(--muted-fg)}
+.price ul{list-style:none;padding:0;margin:0 0 6px;display:grid;gap:10px;font-size:.95rem;flex:1}
+.price li{display:flex;gap:10px;align-items:flex-start}
+.price li svg{flex:none;width:18px;height:18px;margin-top:3px;color:var(--ok)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;margin-bottom:10px}
+summary{cursor:pointer;min-height:56px;display:flex;align-items:center;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 0 18px;color:var(--muted-fg)}
+.final{background:linear-gradient(135deg,var(--primary),color-mix(in srgb,var(--primary) 55%,#1e1b4b));color:#fff;border-radius:24px;padding:48px 28px;text-align:center}
+.final h2{color:#fff}
+.final p{margin:12px auto 24px;max-width:480px;opacity:.92}
+.sign{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap}
+.sign label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sign input{flex:1 1 220px;min-height:48px;padding:0 16px;border-radius:12px;border:1px solid transparent;font:400 1rem "Plus Jakarta Sans",sans-serif;background:#fff;color:#1E293B}
+#msg{margin-top:14px;min-height:24px;font-weight:600}
+footer{padding:32px 0 40px;border-top:1px solid var(--border);font-size:.9rem;color:var(--muted-fg)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Relancio, accueil">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2563EB"/><path d="M9 17l5 5 9-12" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Relancio
+    </a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="#comment">Comment ça marche</a>
+      <a href="#fonctions">Fonctions</a>
+      <a href="#tarifs">Tarifs</a>
+      <a class="btn btn-cta" href="#essai" style="min-height:44px;color:var(--on-accent)">Essai gratuit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><i></i> Déjà utilisé par des PME, agences et indépendants</span>
+      <h1>Vos factures impayées se règlent <span style="color:var(--primary)">toutes seules.</span></h1>
+      <p class="lead">Relancio relance vos clients par e-mail, SMS et WhatsApp, avec le bon ton et au bon moment, jusqu’à ce que vous soyez payé. Fini la gêne, fini les tableurs.</p>
+      <div class="cta-row">
+        <a class="btn btn-cta" href="#essai">Commencer gratuitement</a>
+        <a class="btn btn-ghost" href="#comment">Voir comment ça marche</a>
+      </div>
+      <p class="note">14 jours d’essai · Sans carte bancaire · Installation en 5 minutes</p>
+    </div>
+    <div class="mock" role="img" aria-label="Aperçu du tableau de bord Relancio avec trois factures: payée, en retard, en attente de relance">
+      <div class="mock-h"><span>Factures en cours</span><span class="tag t-ok">Automatique</span></div>
+      <div class="row"><div>Studio Kora<small>Facture 0142 · 1 200 €</small></div><span class="tag t-ok">Payée</span></div>
+      <div class="row"><div>Boulangerie Diop<small>Facture 0139 · 640 € · J+12</small></div><span class="tag t-late">Relance WhatsApp</span></div>
+      <div class="row"><div>Atelier Nova<small>Facture 0145 · 2 450 €</small></div><span class="tag t-wait">Relance dans 2 j</span></div>
+      <div class="kpi">
+        <div><b>3 840 €</b><span>récupérés ce mois</span></div>
+        <div><b>11 h</b><span>gagnées</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:40px">
+  <div class="wrap stats">
+    <div class="stat"><b>1 facture sur 3</b><span class="muted">est payée en retard dans la plupart des petites entreprises.</span></div>
+    <div class="stat"><b>−60 %</b><span class="muted">de retards de paiement en moyenne avec des relances régulières.</span></div>
+    <div class="stat"><b>0 gêne</b><span class="muted">Relancio écrit à votre place, poliment et sans jamais oublier.</span></div>
+  </div>
+</section>
+
+<section id="comment" class="alt">
+  <div class="wrap">
+    <div class="head"><h2>Trois étapes, puis vous n’y pensez plus</h2><p>Relancio se branche sur vos outils de facturation existants. Aucun changement d’habitude.</p></div>
+    <div class="steps">
+      <div class="step"><h3>Connectez vos factures</h3><p>Import CSV, Google Sheets ou connexion à votre logiciel de facturation. Vos échéances sont détectées automatiquement.</p></div>
+      <div class="step"><h3>Choisissez votre ton</h3><p>Amical, neutre ou ferme. Des scénarios prêts à l’emploi, que vous pouvez modifier mot pour mot.</p></div>
+      <div class="step"><h3>Encaissez</h3><p>Chaque message contient un lien de paiement. Dès que le client règle, les relances s’arrêtent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="fonctions">
+  <div class="wrap">
+    <div class="head"><h2>Tout pour être payé à temps</h2><p>Pensé pour ceux qui n’ont pas de service comptabilité.</p></div>
+    <div class="feats">
+      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>E-mail, SMS et WhatsApp</h3><p>Le canal que votre client lit vraiment. Relancio passe au suivant si le premier reste sans réponse.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3>Lien de paiement intégré</h3><p>Carte, virement ou mobile money. Le client paie en deux clics, sans se connecter.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Relances intelligentes</h3><p>Le bon délai selon le client et le montant. Les bons payeurs ne sont jamais harcelés.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Prévision de trésorerie</h3><p>Voyez ce qui rentrera cette semaine et ce mois, client par client.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tarifs" class="alt">
+  <div class="wrap">
+    <div class="head"><h2>Un prix qui se rembourse dès la première facture récupérée</h2><p>Sans engagement. Résiliable à tout moment.</p></div>
+    <div class="prices">
+      <div class="price"><h3>Solo</h3><div class="amt">19 €<small> /mois</small></div><p class="muted">Pour les indépendants.</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>50 factures / mois</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Relances par e-mail</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Lien de paiement</li></ul>
+        <a class="btn btn-ghost" href="#essai">Essayer Solo</a></div>
+      <div class="price pop"><h3>Équipe</h3><div class="amt">49 €<small> /mois</small></div><p class="muted">Pour PME et agences.</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>500 factures / mois</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>E-mail, SMS et WhatsApp</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Prévision de trésorerie</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>5 utilisateurs</li></ul>
+        <a class="btn btn-cta" href="#essai">Essayer Équipe</a></div>
+      <div class="price"><h3>Business</h3><div class="amt">129 €<small> /mois</small></div><p class="muted">Pour les structures plus grandes.</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Factures illimitées</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Scénarios personnalisés</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Accès API</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Support prioritaire</li></ul>
+        <a class="btn btn-ghost" href="#essai">Essayer Business</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:760px">
+    <div class="head"><h2>Questions fréquentes</h2></div>
+    <details><summary>Mes clients risquent-ils de mal le prendre ?</summary><p>Les messages sont courtois et signés à votre nom. Vous validez le ton avant l’envoi, et les bons payeurs ne reçoivent qu’un simple rappel.</p></details>
+    <details><summary>Faut-il changer de logiciel de facturation ?</summary><p>Non. Relancio lit vos factures existantes via import ou connexion, sans rien modifier de votre façon de travailler.</p></details>
+    <details><summary>Que se passe-t-il quand un client paie ?</summary><p>Les relances s’arrêtent automatiquement et la facture passe en « payée ». Vous recevez une notification.</p></details>
+    <details><summary>Puis-je arrêter quand je veux ?</summary><p>Oui, sans engagement ni frais. Vous pouvez aussi exporter toutes vos données.</p></details>
+  </div>
+</section>
+
+<section id="essai" style="padding-top:0">
+  <div class="wrap">
+    <div class="final">
+      <h2>Récupérez votre argent dès cette semaine</h2>
+      <p>Entrez votre e-mail pour démarrer vos 14 jours d’essai gratuit.</p>
+      <form class="sign" id="f" novalidate>
+        <label for="email">Adresse e-mail</label>
+        <input id="email" type="email" placeholder="vous@entreprise.com" autocomplete="email" required>
+        <button class="btn btn-cta" type="submit">Démarrer l’essai</button>
+      </form>
+      <div id="msg" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Relancio. Tous droits réservés.</span><span>Mentions légales · Confidentialité · Contact</span></div>
+</footer>
+
+<script>
+var dbP=null,userP=null;
+if(window.claude&&claude.use){
+  claude.use('db').then(function(d){dbP=d}).catch(function(){});
+  claude.use('user').then(function(u){userP=u}).catch(function(){});
+}
+document.getElementById('f').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var v=document.getElementById('email').value.trim(),m=document.getElementById('msg');
+  if(!/^\S+@\S+\.\S+$/.test(v)){m.textContent='Merci d’entrer une adresse e-mail valide.';return}
+  if(!dbP||!userP){m.textContent='Connectez-vous à claude.ai pour vous inscrire, l’enregistrement n’est pas disponible pour le moment.';return}
+  try{
+    var id=await userP.id();
+    await dbP.doc('signups/'+id).set({email:v,createdAt:new Date().toISOString()});
+    m.textContent='Merci ! Votre inscription est enregistrée ('+v+').';
+  }catch(err){m.textContent='Enregistrement impossible pour le moment. Réessayez plus tard.'}
+});
+</script>
+</body>
+</html>
